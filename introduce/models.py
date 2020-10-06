@@ -19,6 +19,7 @@ class Answer(models.Model):
                              verbose_name="답변을 한 유저")
 
     question = models.ForeignKey(Question,
+                                 null=True,
                                  on_delete=models.SET_NULL,
                                  verbose_name="답변한 질문")
 
