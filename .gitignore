@@ -75,6 +75,9 @@ pytestdebug.log
 
 # Django stuff:
 
+# migrations
+migrations/
+
 # Flask stuff:
 instance/
 .webassets-cache
