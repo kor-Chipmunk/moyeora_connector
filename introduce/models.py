@@ -25,3 +25,4 @@ class Answer(models.Model):
 
     class Meta:
         db_table = 'intro_answers'
+        unique_together = ('user', 'question')
