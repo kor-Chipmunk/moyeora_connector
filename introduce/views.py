@@ -57,20 +57,38 @@ def list_create_answers(request):
         serializer = AnswerSerializer(data=request.data)
 
         if serializer.is_valid():
+            if request.user != serializer.validated_data['user']:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
+
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(["GET"])
+@api_view(["GET", "PUT", "DELETE"])
 @permission_classes([IsAuthenticated])
-def get_answer(request, answer_id):
+def retrieve_update_destory_answer(request, answer_id):
     try:
         answer = Answer.objects.get(pk=answer_id)
     except Answer.DoesNotExist:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
-    if answer.user != request.user:
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
+    if request.method == "GET":
+        serializer = AnswerSerializer(answer)
 
-    serializer = AnswerSerializer(answer)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    elif request.method == "PUT":
+        if answer.user != request.user:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        serializer = AnswerSerializer(answer, data=request.data)
+
+        if (serializer.is_valid()):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == "DELETE":
+        if answer.user != request.user:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        answer.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

@@ -7,5 +7,5 @@ urlpatterns = format_suffix_patterns([
     path('questions/<int:question_id>', views.retrieve_update_destory_question),
 
     path('answers', views.list_create_answers),
-    path('answers/<int:answer_id>', views.get_answer),
+    path('answers/<int:answer_id>', views.retrieve_update_destory_answer),
 ])
