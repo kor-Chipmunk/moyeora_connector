@@ -34,3 +34,8 @@ class UserLoginSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('invalid credentials provided')
         self.instance = user
         return user
+
+class UserNicknameSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = User
+		fields = ('id', 'nickname',)
