@@ -16,11 +16,19 @@ class SongWithoutUserSerializer(serializers.ModelSerializer):
 
 class SongWithUserNicknameSerializer(serializers.ModelSerializer):
     user = UserNicknameSerializer(read_only=True)
-    count_likes = serializers.IntegerField()
+    count_likes = serializers.IntegerField(required=False)
 
     class Meta:
         model = Song
         exclude = ('is_played', 'likes')
+
+class SongPlaySerializer(serializers.ModelSerializer):
+    user = UserNicknameSerializer(read_only=True)
+    count_likes = serializers.IntegerField()
+
+    class Meta:
+        model = Song
+        exclude = ('likes', )
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
