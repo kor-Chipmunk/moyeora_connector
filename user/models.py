@@ -3,7 +3,7 @@ from django.db import models
 from .managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
-    object = UserManager()
+    objects = UserManager()
 
     email = models.EmailField(max_length=255, unique=True)
     nickname = models.CharField(max_length=20, null=False, unique=True)
