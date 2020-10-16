@@ -1,11 +1,11 @@
 # 모여라 커넥터 API
-신청곡을 받아 서버 컴퓨터에서 크롬으로 유투브 영상을 재생하는 API 서버입니다. 
+신청곡을 받아 서버 컴퓨터에서 크롬으로 유투브 영상을 재생하는 API 서버입니다.   
 DB 모델링과 Django와 Django RestFramework를 익히기 위한 토이 프로젝트입니다. 
 
 기간 : 20.10.05 ~ 20.10.16
 
 ## 빌드 방법
-```
+```python
 # 레포지토리 클론
 git clone https://github.com/kor-Chipmunk/moyeora_connector.git
 cd moyeora_connector
