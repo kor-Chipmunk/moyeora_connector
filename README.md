@@ -5,7 +5,7 @@ DB 모델링과 Django와 Django RestFramework를 익히기 위한 토이 프로
 기간 : 20.10.05 ~ 20.10.16
 
 ## 빌드 방법
-```python
+```bash
 # 레포지토리 클론
 git clone https://github.com/kor-Chipmunk/moyeora_connector.git
 cd moyeora_connector
