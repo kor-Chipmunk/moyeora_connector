@@ -1,7 +1,12 @@
 from rest_framework import serializers
 
-from user.serializers import UserNicknameSerializer
-from .models import Question, Answer
+from user.serializers import (
+    UserNicknameSerializer,
+)
+from .models import (
+    Question,
+    Answer,
+)
 
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:

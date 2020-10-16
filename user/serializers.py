@@ -6,7 +6,7 @@ from .models import User
 class UserCreateSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
-        user = User.object.create_user(validated_data['email'],
+        user = User.objects.create_user(validated_data['email'],
                                        validated_data['nickname'],
                                        validated_data['password'])
         return user

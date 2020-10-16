@@ -1,11 +1,9 @@
-from django.urls import path, include
-from rest_framework.urlpatterns import format_suffix_patterns
-from . import views
+from rest_framework.routers import DefaultRouter
 
-urlpatterns = format_suffix_patterns([
-    path('questions', views.create_list_questions),
-    path('questions/<int:question_id>', views.retrieve_update_destory_question),
+from .apis import *
 
-    path('answers', views.list_create_answers),
-    path('answers/<int:answer_id>', views.retrieve_update_destory_answer),
-])
+router = DefaultRouter()
+router.register(r'questions', QuestionViewSet, basename='question')
+router.register(r'answers', AnswerViewSet, basename='answer')
+
+urlpatterns = router.urls

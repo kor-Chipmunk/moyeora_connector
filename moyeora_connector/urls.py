@@ -8,16 +8,16 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="모여라 커넥터 API",
-      default_version='v1',
-      description="모여라 커넥터의 API 문서입니다.",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="seonjae.kim@yplabs.kr"),
-      license=openapi.License(name="BSD License"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+    openapi.Info(
+        title="모여라 커넥터 API",
+        default_version='v1',
+        description="모여라 커넥터의 API 문서입니다.",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="seonjae.kim@yplabs.kr"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
 )
 
 urlpatterns = [

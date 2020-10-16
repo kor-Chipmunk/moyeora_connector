@@ -21,7 +21,7 @@ class Command(BaseCommand):
         seeder = Seed.seeder()
         seeder.add_entity(Song, number, {
             'is_played': False,
-            'user': lambda x: User.objects.get(pk=355 + random.randint(1, 500)),
+            'user': lambda x: User.objects.get(pk=random.randint(1, user_count - 1)),
         })
         seeder.execute()
         self.stdout.write(self.style.SUCCESS(f'{number} 개의 신청곡이 생성되었습니다!'))

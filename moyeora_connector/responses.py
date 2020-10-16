@@ -2,7 +2,7 @@ from rest_framework.response import Response
 
 
 class CommonResponse(Response):
-    def __init__(self, code, status, data=None, message=None, error=False):
+    def __init__(self, code, status, data=None, message=None, headers=None):
         self.code = code
         self.status = status
         self.data = data
@@ -15,12 +15,4 @@ class CommonResponse(Response):
             "message": message
         }
 
-        if error:
-            result.pop('data', None)
-
-        super().__init__(result, status)
-
-
-class ErrorResponse(CommonResponse):
-    def __init__(self, code, status, message):
-        super().__init__(code=code, status=status, message=message, error=True)
+        super().__init__(result, status, headers=headers)
