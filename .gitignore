@@ -346,3 +346,6 @@ fabric.properties
 # profiling data
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,pycharm,django,python
+
+celery_log
+*.rdb
