@@ -6,7 +6,6 @@ from .views import UserLoginAPIView, UserCreateAPIView
 
 urlpatterns = format_suffix_patterns([
     path('token', CustomAuthToken.as_view()),
-
     path('login', UserLoginAPIView.as_view(), name='login'),
     path('register', UserCreateAPIView.as_view(), name='register')
 ])

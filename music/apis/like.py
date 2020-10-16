@@ -1,25 +1,20 @@
-from django.core.cache import cache
-from django.http import Http404
 from rest_framework import (
     authentication,
-    viewsets,
-    status, mixins, generics
+    status,
+    mixins,
 )
-from rest_framework.decorators import action
-from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
-from moyeora_connector.exception_handler import CommonAPIException
 from moyeora_connector.responses import CommonResponse
 
 from ..models import (
-    Comment, Like, CommentLike,
+    Comment,
+    Like,
 )
 from ..serializers import (
     LikeSerializer,
-    CommentSerializer, CommentLikeSerializer,
+    CommentLikeSerializer,
 )
 
 __all__ = (

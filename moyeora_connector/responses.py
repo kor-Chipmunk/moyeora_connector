@@ -15,4 +15,8 @@ class CommonResponse(Response):
             "message": message
         }
 
-        super().__init__(result, status, headers=headers)
+        super().__init__(
+            result,
+            status,
+            headers=headers
+        )

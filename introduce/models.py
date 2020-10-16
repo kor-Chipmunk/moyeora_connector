@@ -20,14 +20,18 @@ class Answer(models.Model):
     content = models.TextField(verbose_name="답변 내용")
     created_at = models.DateTimeField(verbose_name="생성 일자", auto_now_add=True)
 
-    user = models.ForeignKey(User,
-                             on_delete=models.CASCADE,
-                             verbose_name="답변을 한 유저")
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name="답변을 한 유저"
+    )
 
-    question = models.ForeignKey(Question,
-                                 null=True,
-                                 on_delete=models.SET_NULL,
-                                 verbose_name="답변한 질문")
+    question = models.ForeignKey(
+        Question,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="답변한 질문"
+    )
 
     class Meta:
         verbose_name = "답변"

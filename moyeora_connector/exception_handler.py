@@ -17,13 +17,26 @@ class CommonAPIException(exceptions.APIException):
 
 def custom_exception_handler(exc, context):
     if isinstance(exc, Http404):
-        exc = CommonAPIException('NOT_FOUND', status.HTTP_404_NOT_FOUND, '페이지를 찾을 수 없습니다.')
+        exc = CommonAPIException(
+            'NOT_FOUND',
+            status.HTTP_404_NOT_FOUND,
+            '페이지를 찾을 수 없습니다.'
+        )
     elif isinstance(exc, PermissionDenied):
-        exc = CommonAPIException('PERMISSION_DENIED', status.HTTP_401_UNAUTHORIZED, '접근 권한이 없습니다.')
+        exc = CommonAPIException(
+            'PERMISSION_DENIED',
+            status.HTTP_401_UNAUTHORIZED,
+            '접근 권한이 없습니다.'
+        )
     elif isinstance(exc, NotAuthenticated):
-        exc = CommonAPIException('UNAUTHENTICATED', status.HTTP_401_UNAUTHORIZED, '접근 권한이 없습니다.')
+        exc = CommonAPIException(
+            'UNAUTHENTICATED',
+            status.HTTP_401_UNAUTHORIZED,
+            '접근 권한이 없습니다.'
+        )
 
     headers = None
+
     if isinstance(exc, APIException):
         headers = {}
         if getattr(exc, 'auth_header', None):
@@ -32,9 +45,18 @@ def custom_exception_handler(exc, context):
             headers['Retry-After'] = '%d' % exc.wait
 
     if not isinstance(exc, CommonAPIException) and isinstance(exc, APIException):
-        exc = CommonAPIException('UNHANDLED_EXCEPTION', exc.status_code, '', exc.detail)
+        exc = CommonAPIException(
+            'UNHANDLED_EXCEPTION',
+            exc.status_code,
+            '',
+            exc.detail
+        )
 
     if isinstance(exc, CommonAPIException):
-        return Response(exc.__dict__, status=exc.status, headers=headers)
+        return Response(
+            exc.__dict__,
+            status=exc.status,
+            headers=headers
+        )
 
     return None
